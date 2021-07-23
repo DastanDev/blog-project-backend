@@ -1,4 +1,4 @@
-POST http://localhost:5000/user
+POST https://blog-project-backend1.herokuapp.com/api/user
 Content-Type: application/json
 
 {

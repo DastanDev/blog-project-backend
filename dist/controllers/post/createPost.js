@@ -46,9 +46,14 @@ var createPost = function (req, res) { return __awaiter(void 0, void 0, void 0, 
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                if (!req.body.title && !req.body.content)
+                if (!req.body.title || !req.body.content || !req.body.description)
                     throw Error("All fields required");
-                return [4 /*yield*/, postModel_1.default.create(req.body)];
+                return [4 /*yield*/, postModel_1.default.create({
+                        title: req.body.title,
+                        content: req.body.content,
+                        description: req.body.description,
+                        author: req.user.username,
+                    })];
             case 1:
                 newPost = _a.sent();
                 res.json(newPost);
