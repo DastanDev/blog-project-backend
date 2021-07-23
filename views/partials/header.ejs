@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/tailwind.css" />
+    <title>Home</title>
+  </head>
+</html>
+<body>
+  <!-- navbar -->
+ 
+  <script type="text/javascript">
+    let userData
+    var createPostLink = document.getElementById("createPost")
+    var logoutElement = document.getElementById("logout")
+    var dashBoardElement = document.getElementById("dashboardLink")
+    if (localStorage.getItem("userData")) {
+      userData = JSON.parse(localStorage.getItem("userData"))
+    }
+    if (userData) {
+      createPostLink.setAttribute("href", `/post?token=${userData.token}`)
+      dashBoardElement.setAttribute(
+        "href",
+        `/admin/dashboard?token=${userData.token}`
+      )
+    } else {
+      createPostLink.setAttribute("style", "display: none;")
+      logoutElement.setAttribute("style", "display: none;")
+      dashBoardElement.setAttribute("style", "display: none;")
+    }
+
+    function logout() {
+      localStorage.removeItem("userData")
+      window.location.reload()
+    }
+  </script>
+</body>
